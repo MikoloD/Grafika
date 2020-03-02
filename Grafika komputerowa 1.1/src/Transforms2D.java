@@ -85,7 +85,7 @@ public class Transforms2D extends JPanel {
     private JComboBox<String> transformSelect;
 
     public Transforms2D() throws IOException {
-        pic = ImageIO.read(getClass().getClassLoader().getResource("shuttle.jpg"));
+        //pic = ImageIO.read(getClass().getClassLoader().getResource("shuttle.jpg"));
         display = new Display();
         display.setBackground(Color.YELLOW);
         display.setPreferredSize(new Dimension(600,600));
