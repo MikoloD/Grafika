@@ -23,7 +23,6 @@ public class TransformedShapes extends JPanel {
      * subject to whatever transform(s) have been applied to g2.
      */
     private void circle() {
-        g2.setColor(Color.black);
         g2.fillOval(75,75,100,100);
     }
 
@@ -32,7 +31,6 @@ public class TransformedShapes extends JPanel {
      * to whatever transform(s) have been applied to g2.
      */
     private void square() {
-        g2.setColor(Color.yellow);
         g2.fillRect(100,100,50,50);
     }
 
@@ -74,7 +72,9 @@ public class TransformedShapes extends JPanel {
 
         //g2.rotate(Math.PI/4);
         //g2.scale(1,0.25);
+        g2.setColor(Color.black);
         circle();
+        g2.setColor(Color.yellow);
         square();
         // The next two lines undo the previous scale and rotation.  (Can't use resetTransform()
         // here because that would also eliminate the first translate and scale.)
