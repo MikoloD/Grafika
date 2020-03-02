@@ -48,26 +48,21 @@ public class Transforms2D extends JPanel {
                     g2.rotate(Math.toRadians(90));
                     break;
                 }
-                case 7: {
-                    float[] map = {1.0f,0.0f,0.0f,-1.0f};
-                    AffineTransform at = new AffineTransform(map);
-                    g2.transform(at);
-                    g2.scale(0.5, 1);
+               case 7: {
+                    g2.scale(-0.5, -1);
                     break;
                 }
                 case 8: {
 
                     g2.rotate(Math.toRadians(20));
-                    g2.translate(0,200);
+                    g2.translate(0,150);
                     break;
                 }
                 case 9: {
 
-                    float[] map = {1.0f,0.0f,0.0f,-1.0f};
-                    AffineTransform at = new AffineTransform(map);
-                    g2.transform(at);
-                    g2.shear(0,-0.3);
-                    g2.translate(100,0);
+                    g2.scale(-1,-1);
+                    g2.shear(0,0.3);
+                    g2.translate(-100,0);
                     break;
                 }
             }
