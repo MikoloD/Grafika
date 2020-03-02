@@ -22,8 +22,8 @@ public class TransformedShapes extends JPanel {
      * Draws a filled circle of radius 50 (diameter 100) centered at (0,0),
      * subject to whatever transform(s) have been applied to g2.
      */
-    private void circle() {
-        g2.fillOval(75,75,100,100);
+        private void circle() {
+        g2.fillOval(75,75,200,200);
     }
 
     /**
@@ -31,9 +31,8 @@ public class TransformedShapes extends JPanel {
      * to whatever transform(s) have been applied to g2.
      */
     private void square() {
-        g2.fillRect(100,100,50,50);
+        g2.fillRect(125,125,100,100);
     }
-
     /**
      * Draws a filled triangle with vertices at (-50,50), (50,50), and
      * (0,-50), subject to whatever transform(s) have been applied to g2.
