@@ -115,13 +115,16 @@
 			else if (colorChoice == 4) {
                 graphics.fillStyle = "yellow";
             }
+			else if (colorChoice == 5) {
+                graphics.fillStyle = "purple";
+            }
 			if (shapeChoice == 0) {
                 graphics.fillRect(x-20,y-20,40,40);
 				graphics.strokeRect(x-20,y-20,40,40);
             }
             else if (shapeChoice == 1) {
 				var N = 5;
-				var R = 50;
+				var R = 30;
 		
 				var xPos = new Array();
 				var yPos = new Array();
@@ -293,11 +296,12 @@
 
 <b>Color:</b>
     <select id="colorChoice">
-        <option value="0">Random</option>
-        <option value="1">Red</option>
-        <option value="2">Green</option>
-        <option value="3">Blue</option>
-		<option value="4">Yellow</option>
+        <option value="0">Losowy</option>
+        <option value="1">Czerwowny</option>
+        <option value="2">Zielony</option>
+        <option value="3">Niebieski</option>
+		<option value="4">Żółty</option>
+		<option value="5">Fioletowy</option>
     </select>
 </p>
 
