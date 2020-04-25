@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+width="1440px" height="900px"
+viewBox="0 0 3 2"
+preserveAspectRatio="xMidYMid">
+
+<g>
+	<g>
+	<animateTransform attributeName = "transform" type = "rotate"
+		from = "0 0.16,0.4" to = "360 0.16,0.4"
+		dur = "7s"
+		repeatCount="indefinite"/>	
+		<polygon points="47.0,15.0 0.0,50.0 -47.0,15.0 -29.0,-40.0 29.0,-40.0" 
+			fill="grey" transform="translate(0.16,0.4) scale(0.0025,0.0025) "/>
+	</g>
+	<g>
+	<animateTransform attributeName = "transform" type = "rotate"
+		from = "0 0.64,0.56" to = "360 0.64,0.56"
+		dur = "7s"	
+		repeatCount="indefinite"/>	
+		<polygon points="47.0,15.0 0.0,50.0 -47.0,15.0 -29.0,-40.0 29.0,-40.0" 
+			fill="grey" transform="translate(0.64,0.56) scale(0.0025,0.0025) "/>
+	</g>	
+	<rect x="0.28" y="0.32" width = "0.5" height = "0.015	" transform = "rotate (18)" 
+		fill="red" stroke="red" stroke-width="0.02" />
+	<polygon points="0.3,0.82 0.4,0.47 0.5,0.82" fill="magenta" />	
+	
+</g>
+
+
+<g transform="translate(0.77,0.41) scale(1.5,1.5)" >
+	<g>
+		<animateTransform attributeName = "transform" type = "rotate"
+		from = "0 0.16,0.4" to = "360 0.16,0.4"
+		dur = "7s"
+		repeatCount="indefinite"/>	
+		<polygon points="47.0,15.0 0.0,50.0 -47.0,15.0 -29.0,-40.0 29.0,-40.0" 
+			fill="grey" transform="translate(0.16,0.4) scale(0.0025,0.0025) "/>
+	</g>
+	
+	<g>
+	<animateTransform attributeName = "transform" type = "rotate"
+		from = "0 0.64,0.56" to = "360 0.64,0.56"
+		dur = "7s"	
+		repeatCount="indefinite"/>	
+		<polygon points="47.0,15.0 0.0,50.0 -47.0,15.0 -29.0,-40.0 29.0,-40.0" 
+			fill="grey" transform="translate(0.64,0.56) scale(0.0025,0.0025) "/>
+	</g>
+	<rect x="0.28" y="0.32" width = "0.5" height = "0.015	" transform = "rotate (18)" 
+		fill="red" stroke="red" stroke-width="0.02" />
+	<polygon points="0.3,0.82 0.4,0.47 0.5,0.82" fill="blue" />	
+</g>
+
+
+<g transform="translate(1.6,0.2) scale(0.7,0.7)" >
+		<g>
+		<animateTransform attributeName = "transform" type = "rotate"
+		from = "0 0.16,0.4" to = "360 0.16,0.4"
+		dur = "7s"
+		repeatCount="indefinite"/>	
+		<polygon points="47.0,15.0 0.0,50.0 -47.0,15.0 -29.0,-40.0 29.0,-40.0" 
+			fill="grey" transform="translate(0.16,0.4) scale(0.0025,0.0025) "/>
+	</g>
+	
+	<g>
+	<animateTransform attributeName = "transform" type = "rotate"
+		from = "0 0.64,0.56" to = "360 0.64,0.56"
+		dur = "7s"	
+		repeatCount="indefinite"/>	
+		<polygon points="47.0,15.0 0.0,50.0 -47.0,15.0 -29.0,-40.0 29.0,-40.0" 
+			fill="grey" transform="translate(0.64,0.56) scale(0.0025,0.0025) "/>
+	</g>
+	<rect x="0.28" y="0.32" width = "0.5" height = "0.015	" transform = "rotate (18)" 
+		fill="red" stroke="red" stroke-width="0.02" />
+	<polygon points="0.3,0.82 0.4,0.47 0.5,0.82" fill="green" />	
+</g>
+	
+</svg>
