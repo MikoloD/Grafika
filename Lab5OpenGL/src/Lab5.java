@@ -108,20 +108,6 @@ public class Lab5 extends GLJPanel implements GLEventListener, KeyListener{
             }
             gl2.glEnd();
 
-            gl2.glBegin(GL2.GL_TRIANGLES);
-            for (int i = 0; i<= N*2; i += 1)
-            {
-                x = (float) Math.sin(i * 2 * Math.PI / N)*size;
-                y = (float) Math.cos(i * 2 * Math.PI / N)*size;
-                gl2.glColor3f(1.0f, 1.0f, 1.0f);
-                gl2.glVertex3f(x, y, z);
-                if(i%2==0)
-                {
-                    gl2.glVertex3f(0, 0, z);
-                }
-            }
-            gl2.glEnd();
-
         }
 
     // TODO: Draw the currently selected object, number 1, 2, 3, 4, 5, or 6.
