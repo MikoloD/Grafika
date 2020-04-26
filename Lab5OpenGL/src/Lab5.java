@@ -64,7 +64,7 @@ public class Lab5 extends GLJPanel implements GLEventListener, KeyListener{
         gl2.glRotatef(rotateY,0,1,0);
         gl2.glRotatef(rotateX,1,0,0);
 
-        int N=5;
+        int N=5;// ilosc obrotów i ilosc kątów wielokąta
 
         if(objectNumber==1)
         {
