@@ -204,7 +204,7 @@ public class Lab7 extends JPanel implements GLEventListener {
 	 * Create a JOGL Texture from the image in the PaintPanel.
 	 * @return the newly created texture object.
 	 */
-	private Texture textureFromPainting() {
+	private Texture textureFromPainting() { // tekstura z rysowanej
 		Texture texture;
 		BufferedImage img = paintPanel.copyOSC();
 		GLContext kontekst = displayGL.getContext();
