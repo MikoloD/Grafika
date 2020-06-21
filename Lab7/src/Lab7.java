@@ -1,12 +1,18 @@
 import java.awt.*;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.net.URL;
+import java.util.Objects;
+
 import com.jogamp.opengl.*;
 import com.jogamp.opengl.awt.*;
 import com.jogamp.opengl.util.awt.AWTGLReadBufferUtil;
+import com.jogamp.opengl.util.awt.ImageUtil;
 import com.jogamp.opengl.util.gl2.GLUT;
-import com.jogamp.opengl.util.texture.Texture; 
+import com.jogamp.opengl.util.texture.Texture;
+import com.jogamp.opengl.util.texture.awt.AWTTextureIO;
 
 /**
  * CPSC 424, Fall 2015, Lab 7:  Image Textures in OpenGL/JOGL.
@@ -110,6 +116,12 @@ public class Lab7 extends JPanel implements GLEventListener {
 		case 6:
 			triangularPrism(gl2);
 			break;
+
+		case 7:
+			gl2.glRotatef(-90, 1, 0, 0);
+			gl2.glTranslated(0, 0, -0.4);
+			TexturedShapes.Pyramid(gl2);
+			break;
 		}
 	}
 	
@@ -178,7 +190,34 @@ public class Lab7 extends JPanel implements GLEventListener {
 	 */
 	private Texture textureFromPainting() {
 		// TODO: write this method
-		return null;
+		URL textureStream;
+
+		textureStream = this.getClass().getClassLoader().getResource(resourceName);
+
+		BufferedImage image = ImageIO.read(Objects.requireNonNull(textureStream));
+
+		Texture texture;
+
+		ImageUtil.flipImageVertically(image);
+
+		GLContext context = displayGL.getContext();
+
+		if (!context.isCurrent()) {
+
+			context.makeCurrent();
+
+		}
+		GL2 gl2 = context.getGL().getGL2();
+
+		texture = AWTTextureIO.newTexture(displayGL.getGLProfile(), image, true);
+
+		texture.setTexParameteri(gl2, GL2.GL_TEXTURE_WRAP_S, GL2.GL_REPEAT);
+
+		texture.setTexParameteri(gl2, GL2.GL_TEXTURE_WRAP_T, GL2.GL_REPEAT);
+
+		return texture;
+
+	}
 	}
 	
 	/**
@@ -346,6 +385,7 @@ public class Lab7 extends JPanel implements GLEventListener {
 		makeMenuItem(objectMenu, "Torus", objectListener, 4);
 		makeMenuItem(objectMenu, "Teapot", objectListener, 5);
 		makeMenuItem(objectMenu, "Triangular Prism", objectListener, 6);
+		makeMenuItem(objectMenu, "Piramida", objectListener, 7);
 		menuBar.add(objectMenu);
 		
 		return menuBar;

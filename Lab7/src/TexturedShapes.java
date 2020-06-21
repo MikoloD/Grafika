@@ -73,7 +73,9 @@ public class TexturedShapes {
         uvTorus(gl,0.5,1.0/6,48,72,true);
     }
 
-
+    public static void Pyramid(GL2 gl) {
+        uvCone(gl,0.5,1,5,10,5,true);
+    }
 
     /**
      * Draw a sphere with a given radius, number of slices, and number
