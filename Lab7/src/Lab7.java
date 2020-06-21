@@ -3,6 +3,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 
@@ -46,19 +47,19 @@ public class Lab7 extends JPanel implements GLEventListener {
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
 	}
-	
+
 	private PaintPanel paintPanel;  // A panel where the user can paint images.
-	
+
 	private GLJPanel displayGL;  // A GLJPanel where a shape is displayed using OpenGL.
 	private GLUT glut = new GLUT();   // For drawing the teapot.
-	
+
 	private Camera camera;  // A Camera for setting the view/projection, which user can rotate by mouse.
-	
+
 	private int currentObjectNum = 0; // tells which object to draw.
-	
+
 	private int textureRepeatHorizontal = 1;  // Horizontal scale factor for texture transform
 	private int textureRepeatVertical = 1;    // Vertical scale factor for texture transform
-	
+
 	private Texture currentTexture = null;  // the texture that will be applied when the object is drawn.
 
 	/**
@@ -82,70 +83,70 @@ public class Lab7 extends JPanel implements GLEventListener {
 	}
 
 	//-------------------------- Draw a shape -------------------------------------
-	
+
 	/**
 	 * Draws the currently selected 3D object.
 	 */
 	private void drawCurrentShape(GL2 gl2) {
 		switch (currentObjectNum) {
-		case 0:
-			gl2.glScaled(0.9,0.9,0.9);
-			TexturedShapes.cube(gl2);
-			break;
-		case 1:
-			gl2.glRotated(-90,1,0,0);
-			gl2.glTranslated(0,0,-0.5);
-			TexturedShapes.uvCylinder(gl2);
-			break;
-		case 2:
-			gl2.glRotated(-90,1,0,0);
-			gl2.glTranslated(0,0,-0.4);
-			TexturedShapes.uvCone(gl2);
-			break;
-		case 3:
-			gl2.glScaled(1.3,1.3,1.3);
-			TexturedShapes.uvSphere(gl2);
-			break;
-		case 4:
-			gl2.glScaled(1.4,1.4,1.4);
-			TexturedShapes.uvTorus(gl2);
-			break;
-		case 5:
-			glut.glutSolidTeapot(0.47);
-			break;
-		case 6:
-			triangularPrism(gl2);
-			break;
+			case 0:
+				gl2.glScaled(0.9,0.9,0.9);
+				TexturedShapes.cube(gl2);
+				break;
+			case 1:
+				gl2.glRotated(-90,1,0,0);
+				gl2.glTranslated(0,0,-0.5);
+				TexturedShapes.uvCylinder(gl2);
+				break;
+			case 2:
+				gl2.glRotated(-90,1,0,0);
+				gl2.glTranslated(0,0,-0.4);
+				TexturedShapes.uvCone(gl2);
+				break;
+			case 3:
+				gl2.glScaled(1.3,1.3,1.3);
+				TexturedShapes.uvSphere(gl2);
+				break;
+			case 4:
+				gl2.glScaled(1.4,1.4,1.4);
+				TexturedShapes.uvTorus(gl2);
+				break;
+			case 5:
+				glut.glutSolidTeapot(0.47);
+				break;
+			case 6:
+				triangularPrism(gl2);
+				break;
 
-		case 7:
-			gl2.glRotatef(-90, 1, 0, 0);
-			gl2.glTranslated(0, 0, -0.4);
-			TexturedShapes.Pyramid(gl2);
-			break;
+			case 7:
+				gl2.glRotatef(-90, 1, 0, 0);
+				gl2.glTranslated(0, 0, -0.4);
+				TexturedShapes.Pyramid(gl2);
+				break;
 		}
 	}
-	
+
 	/**
 	 * Draws a triangular prism by drawing its five faces.
 	 */
 	private void triangularPrism(GL2 gl2) {
 		// TODO: add texture coordinates
 		double t = Math.sqrt(3)/4;
-		
+
 		gl2.glBegin(GL2.GL_TRIANGLES);  // top triangular face
 		gl2.glNormal3d(0,1,0);
 		gl2.glVertex3d(-t,0.5,-0.25);
 		gl2.glVertex3d(t,0.5,-0.25);
 		gl2.glVertex3d(0,0.5,0.5);
 		gl2.glEnd();
-		
+
 		gl2.glBegin(GL2.GL_TRIANGLES);  // bottom triangular
 		gl2.glNormal3d(0,-1,0);
 		gl2.glVertex3d(t,-0.5,-0.25);
 		gl2.glVertex3d(-t,-0.5,-0.25);
 		gl2.glVertex3d(0,-0.5,0.5);
 		gl2.glEnd();
-		
+
 		gl2.glBegin(GL2.GL_TRIANGLE_FAN); // back face (side facing towards negative z-axis)
 		gl2.glNormal3d(0,0,-1);
 		gl2.glVertex3d(-t,-0.5,-0.25);
@@ -153,7 +154,7 @@ public class Lab7 extends JPanel implements GLEventListener {
 		gl2.glVertex3d(t,0.5,-0.25);
 		gl2.glVertex3d(t,-0.5,-0.25);
 		gl2.glEnd();
-		
+
 		gl2.glBegin(GL2.GL_TRIANGLE_FAN); // front left face
 		gl2.glNormal3d(-0.75,0,t);
 		gl2.glVertex3d(-t,0.5,-0.25);
@@ -161,7 +162,7 @@ public class Lab7 extends JPanel implements GLEventListener {
 		gl2.glVertex3d(0,-0.5,0.5);
 		gl2.glVertex3d(0,0.5,0.5);
 		gl2.glEnd();
-		
+
 		gl2.glBegin(GL2.GL_TRIANGLE_FAN); // front right face
 		gl2.glNormal3d(0.75,0,t);
 		gl2.glVertex3d(0,0.5,0.5);
@@ -170,56 +171,54 @@ public class Lab7 extends JPanel implements GLEventListener {
 		gl2.glVertex3d(t,0.5,-0.25);
 		gl2.glEnd();
 	}
-	
+
 	//----------------------------- Implement Texture Menu Commands ---------------
-	
+
 	/**
 	 * Create a JOGL Texture from an image that is given as a
 	 * resource file in the program.
 	 * @param resourceName path to the resource file
 	 * @return the newly created texture.
 	 */
-	private Texture textureFromResource(String resourceName) {
-		// TODO: write this method
-		return null;
+	private Texture textureFromResource(String resourceName)  throws IOException { // pobieranie tekstów z resorces
+		URL stream;
+
+		stream = this.getClass().getClassLoader().getResource(resourceName);
+		BufferedImage img = ImageIO.read(Objects.requireNonNull(stream));
+		Texture texture;
+
+		ImageUtil.flipImageVertically(img);
+		GLContext kontekst = displayGL.getContext();
+		if (!kontekst.isCurrent())
+		{
+			kontekst.makeCurrent();
+		}
+		GL2 gl2 = kontekst.getGL().getGL2();
+		texture = AWTTextureIO.newTexture(displayGL.getGLProfile(), img, true);
+		texture.setTexParameteri(gl2, GL2.GL_TEXTURE_WRAP_S, GL2.GL_REPEAT);
+		texture.setTexParameteri(gl2, GL2.GL_TEXTURE_WRAP_T, GL2.GL_REPEAT);
+		return texture;
 	}
-	
+
 	/**
 	 * Create a JOGL Texture from the image in the PaintPanel.
 	 * @return the newly created texture object.
 	 */
 	private Texture textureFromPainting() {
-		// TODO: write this method
-		URL textureStream;
-
-		textureStream = this.getClass().getClassLoader().getResource(resourceName);
-
-		BufferedImage image = ImageIO.read(Objects.requireNonNull(textureStream));
-
 		Texture texture;
-
-		ImageUtil.flipImageVertically(image);
-
-		GLContext context = displayGL.getContext();
-
-		if (!context.isCurrent()) {
-
-			context.makeCurrent();
-
+		BufferedImage img = paintPanel.copyOSC();
+		GLContext kontekst = displayGL.getContext();
+		if (!kontekst.isCurrent())
+		{
+			kontekst.makeCurrent();
 		}
-		GL2 gl2 = context.getGL().getGL2();
-
-		texture = AWTTextureIO.newTexture(displayGL.getGLProfile(), image, true);
-
+		GL2 gl2 = kontekst.getGL().getGL2();
+		texture = AWTTextureIO.newTexture(displayGL.getGLProfile(), img, true);
 		texture.setTexParameteri(gl2, GL2.GL_TEXTURE_WRAP_S, GL2.GL_REPEAT);
-
 		texture.setTexParameteri(gl2, GL2.GL_TEXTURE_WRAP_T, GL2.GL_REPEAT);
-
 		return texture;
+	}
 
-	}
-	}
-	
 	/**
 	 * Copy the image from the OpenGL display panel to the PaintPanel.
 	 * (Note that this method is called from the event-handling thread.
@@ -232,7 +231,7 @@ public class Lab7 extends JPanel implements GLEventListener {
 		GLContext context = displayGL.getContext(); // OpenGL context for the display panel.
 		boolean needsRelease = false;  // Will be set to true if context needs to be made current.
 		if ( ! context.isCurrent() ) {
-			    // Make the context current on the current thread.
+			// Make the context current on the current thread.
 			context.makeCurrent();
 			needsRelease = true;
 		}
@@ -243,7 +242,7 @@ public class Lab7 extends JPanel implements GLEventListener {
 			context.release();
 		}
 		paintPanel.installImage(img); // copy the image into the PaintPanel.
-	}	
+	}
 
 	//-------------------------- OpenGL methods from GLEventListener ---------------
 
@@ -251,17 +250,28 @@ public class Lab7 extends JPanel implements GLEventListener {
 	 * The display method is called when the panel needs to be drawn.
 	 * Here, it draws a stage and some objects on the stage.
 	 */
-	public void display(GLAutoDrawable drawable) {    
+	public void display(GLAutoDrawable drawable) {
 
 		GL2 gl2 = drawable.getGL().getGL2(); // The object that contains all the OpenGL methods.
 
 		gl2.glClear( GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT );
-		
+
 		camera.apply(gl2); // Sets projection and view transformations.
-		
+
 		// TODO: apply currentTexture (or turn off texturing if it is null)
-		
-		drawCurrentShape(gl2);
+
+		Texture texture = currentTexture; // uaktualnienie tekstury
+			if (texture != null)
+		{
+			texture.enable(gl2);
+			texture.bind(gl2);
+			drawCurrentShape(gl2);
+			texture.disable(gl2);
+		}
+		else
+		{
+			drawCurrentShape(gl2);
+		}
 
 	} // end display()
 
@@ -276,7 +286,7 @@ public class Lab7 extends JPanel implements GLEventListener {
 		gl2.glClearColor(1, 1, 1, 1 );
 		gl2.glEnable(GL2.GL_DEPTH_TEST);
 		gl2.glEnable(GL2.GL_NORMALIZE);
-		gl2.glEnable(GL2.GL_LIGHTING);  
+		gl2.glEnable(GL2.GL_LIGHTING);
 		gl2.glEnable(GL2.GL_LIGHT0);
 		gl2.glEnable(GL2.GL_LIGHT1);
 		gl2.glEnable(GL2.GL_LIGHT2);
@@ -307,7 +317,7 @@ public class Lab7 extends JPanel implements GLEventListener {
 	}
 
 	// -------------------- Define a menu bar for use with this panel -----------------------
-	
+
 	/**
 	 * Creates a menu bar for use in this program.  The menu bar consists of
 	 * a menu bar from the PaintPanel, with two additional menus.  The menu
@@ -317,35 +327,53 @@ public class Lab7 extends JPanel implements GLEventListener {
 	 */
 	public JMenuBar getMenuBar() {
 		JMenuBar menuBar = paintPanel.getMenuBar();
-		
+
 		JMenu textureMenu = new JMenu("Texture");
 		ActionListener textureListener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int itemNum = Integer.parseInt(e.getActionCommand());
 				switch ( itemNum ) {
-				case 0:
-					currentTexture = textureFromPainting();
-					break;
-				case 1:
-					paintingFromOpenGL();
-					break;
-				case 2:
-					currentTexture = null;
-					break;
-				case 3:
-					currentTexture = textureFromResource("earth.jpg");
-					break;
-				case 4:
-					currentTexture = textureFromResource("brick.jpg");
-					break;
-				case 5:
-					currentTexture = textureFromResource("clouds.jpg");
-					break;
-				default:
-					if (itemNum < 10)
-						textureRepeatHorizontal = itemNum - 5;
-					else
-						textureRepeatVertical = itemNum - 9;
+					case 0:
+						currentTexture = textureFromPainting();
+						break;
+					case 1:
+						paintingFromOpenGL();
+						break;
+					case 2:
+						currentTexture = null;
+						break;
+					case 3:
+						try {
+							currentTexture = textureFromResource("earth.jpg");
+						}
+						catch (IOException ex)
+						{
+							ex.printStackTrace();
+						}
+						break;
+					case 4:
+						try {
+							currentTexture = textureFromResource("brick.jpg");
+						}
+						catch (IOException ex)
+						{
+							ex.printStackTrace();
+						}
+						break;
+					case 5:
+						try {
+							currentTexture = textureFromResource("clouds.jpg");
+						}
+						catch (IOException ex)
+						{
+							ex.printStackTrace();
+						}
+						break;
+					default:
+						if (itemNum < 10)
+							textureRepeatHorizontal = itemNum - 5;
+						else
+							textureRepeatVertical = itemNum - 9;
 				}
 				if (itemNum != 1) {
 					displayGL.repaint();
@@ -370,7 +398,7 @@ public class Lab7 extends JPanel implements GLEventListener {
 		makeMenuItem(textureMenu, "Vertical Repeat = 3", textureListener, 12);
 		makeMenuItem(textureMenu, "Vertical Repeat = 4", textureListener, 13);
 		menuBar.add(textureMenu);
-		
+
 		JMenu objectMenu = new JMenu("3D Object");
 		ActionListener objectListener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -387,10 +415,10 @@ public class Lab7 extends JPanel implements GLEventListener {
 		makeMenuItem(objectMenu, "Triangular Prism", objectListener, 6);
 		makeMenuItem(objectMenu, "Piramida", objectListener, 7);
 		menuBar.add(objectMenu);
-		
+
 		return menuBar;
 	}
-	
+
 	/**
 	 * Create a menu item and add it to a menu.
 	 * @param menu  the menu to which the item will be added
