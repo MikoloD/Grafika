@@ -203,14 +203,12 @@ public class Lab6 extends GLJPanel implements GLEventListener {
 
         gl2.glEnable(LIGHT);
 
-        float[] position = lightPositions;
-
         gl2.glLightfv(LIGHT, GL2.GL_SPECULAR	, materials[material]	,0);
         gl2.glLightfv(LIGHT, GL2.GL_DIFFUSE	, materials[material]	,0);
         gl2.glLightfv(LIGHT, GL2.GL_AMBIENT	, materials[material]	,0);
         gl2.glLightfv(LIGHT, GL2.GL_EMISSION	, materials[material]	,0);
 
-        gl2.glLightfv(LIGHT, GL2.GL_POSITION	, position				,0);
+        gl2.glLightfv(LIGHT, GL2.GL_POSITION	, lightPositions,0);
     }
 
     public void dispose(GLAutoDrawable drawable) {
