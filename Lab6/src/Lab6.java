@@ -178,9 +178,40 @@ public class Lab6 extends GLJPanel implements GLEventListener {
         gl2.glEnable(GL2.GL_LIGHTING);
         gl2.glEnable(GL2.GL_LIGHT0);
 
+        float[][] lightsPositions= {
+                {-10, 5, -10, 0 },
+                {-15, 5, -15, 0},
+                {-10, 5, 10, 0 },
+                {10, 15, -10, 0 },
+                {5,5,5,0},
+                {0,0,0,1},
+                {-100, -100, -100, 0},
+                {100, 100, 100, 0}
+        };
+
+        int[] chosenMaterials = {0, 4, 11, 6, 8, 15, 9, 3};
+
+        int lightSeed = 16384;
+        int lightsQuantity = 3;
+
+        for(int i=0; i<lightsQuantity; i++) {
+            newLight(gl2, (lightSeed+i), lightsPositions[i], chosenMaterials[i]);
+        }
         // TODO configure better lighting!
     }
+    public void newLight(GL2 gl2, int LIGHT, float[] lightPositions, int material) {
 
+        gl2.glEnable(LIGHT);
+
+        float[] position = lightPositions;
+
+        gl2.glLightfv(LIGHT, GL2.GL_SPECULAR	, materials[material]	,0);
+        gl2.glLightfv(LIGHT, GL2.GL_DIFFUSE	, materials[material]	,0);
+        gl2.glLightfv(LIGHT, GL2.GL_AMBIENT	, materials[material]	,0);
+        gl2.glLightfv(LIGHT, GL2.GL_EMISSION	, materials[material]	,0);
+
+        gl2.glLightfv(LIGHT, GL2.GL_POSITION	, position				,0);
+    }
 
     public void dispose(GLAutoDrawable drawable) {
         // called when the panel is being disposed
